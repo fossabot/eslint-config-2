@@ -1,4 +1,5 @@
-import type { TypedFlatConfig, Rules } from './types';
+import { withConfigs } from './core';
+import type { Config, ConfigWithExtends, Rules } from './types';
 
 import { default as unjsPreset } from 'eslint-config-unjs';
 import { configs as stylisticConfigs } from '@stylistic/eslint-plugin';
@@ -10,14 +11,14 @@ export const files = [
   '**/*.vue',
 ];
 
-export const rules = {
+export const rules: Rules = {
   '@stylistic/brace-style': ['error', '1tbs'],
   '@stylistic/indent': ['error', 2],
   '@stylistic/quotes': ['error', 'single'],
   'vue/multi-word-component-names': 'off',
 };
 
-export const configs: TypedFlatConfig[] = [
+export const configs: Config[] = [
   {
     name: 'poupe/vue-ts',
     languageOptions: {
@@ -34,20 +35,21 @@ export const configs: TypedFlatConfig[] = [
   },
   {
     name: 'poupe/rules',
-    rules: rules as Rules,
+    rules,
   },
 ];
 
-export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
-  return unjsPreset({
+export const defineConfig = (...userConfigs: ConfigWithExtends[]): Config[] => [
+  ...unjsPreset({
     ignores: [
       '**/dist',
       '**/node_modules',
     ],
-  },
-  ...vueConfigs['flat/recommended'],
-  stylisticConfigs['recommended-flat'],
-  ...configs,
-  ...userConfigs,
-  );
-};
+  }),
+  ...withConfigs(
+    ...vueConfigs['flat/recommended'],
+    stylisticConfigs['recommended-flat'],
+    ...configs,
+    ...userConfigs,
+  ),
+];
