@@ -4,11 +4,9 @@ Sharable ESLint config preset for usage across Poupe UI projects.
 
 ✅ Includes:
 
-* [eslint-config-unjs](https://github.com/unjs/eslint-config) ❤️
-  * [eslint recommended rules](https://eslint.org/docs/latest/rules/)
-  * [unicorn rules](https://github.com/sindresorhus/eslint-plugin-unicorn)
-  * [typescript-eslint integration](https://typescript-eslint.io/)
-  * [markdown plugin](https://www.npmjs.com/package/eslint-plugin-markdown)
+* [eslint recommended rules](https://eslint.org/docs/latest/rules/)
+* [unicorn rules](https://github.com/sindresorhus/eslint-plugin-unicorn)
+* [typescript-eslint integration](https://typescript-eslint.io/)
 * [vue recommended rules](https://eslint.vuejs.org/rules/) with _typescript_ support.
 * [stylistic recommended formatting rules](https://eslint.style/packages/default) ❤️
 * Poupe UI recommended rules
